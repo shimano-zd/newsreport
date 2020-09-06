@@ -11,38 +11,35 @@ public class DateLabelFormatter extends AbstractFormatter {
 
 	private String datePattern = "dd.MM.yyyy.";
 	private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
-	
+
 	@Override
 	public Object stringToValue(String text) throws ParseException {
-		 return dateFormatter.parseObject(text);
+		return dateFormatter.parseObject(text);
 	}
 
 	@Override
 	public String valueToString(Object value) throws ParseException {
-		 if (value != null) {
-	            Calendar cal = (Calendar) value;
-	            return dateFormatter.format(cal.getTime());
-	        }
+		if (value != null) {
+			Calendar cal = (Calendar) value;
+			return dateFormatter.format(cal.getTime());
+		}
 
-	        return "";
+		return "";
 	}
-	
+
 	public Date getDateFromString(String date) throws ParseException {
-		
-		
+
 		SimpleDateFormat format = new SimpleDateFormat(datePattern);
-		
-		
+
 		return format.parse(date);
 	}
-	
+
 	public String dateToString(Date date) throws ParseException {
-		if(date != null) {
+		if (date != null) {
 			return dateFormatter.format(date);
-			
+
 		}
 		return "";
 	}
 
-	
 }

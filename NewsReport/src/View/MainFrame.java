@@ -43,8 +43,7 @@ import Controller.Scraper;
 import org.jdatepicker.JDatePicker;
 import javax.swing.JTabbedPane;
 
-
-public class MainFrame extends JFrame implements IActivePanelObserver, ILanguageStateObserver{
+public class MainFrame extends JFrame implements IActivePanelObserver, ILanguageStateObserver {
 
 	private JPanel contentPane;
 	private JLabel titleLabel;
@@ -56,88 +55,80 @@ public class MainFrame extends JFrame implements IActivePanelObserver, ILanguage
 	private HelpPanel helpPanel;
 	private AnalysisPanel analysisPanel;
 	private ApplicationState appState;
-	
+
 	public MainFrame() {
-		
+
 		setTitle("NewsReport");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 850, 560);
 		setResizable(false);
-		
+
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		createComponents();
-		
+
 		appState = ApplicationState.instance();
 		appState.addPanelObserver(this);
 		appState.addLanguageObserver(this);
-		
-		
-		
+
 	}
-	
+
 	private void createComponents() {
-		
+
 		languageFactory = new LanguageFactory();
 		language = languageFactory.createLanguage(LanguageType.English);
-		
-		
+
 		menuPanel = new MenuPanel();
 		menuPanel.setSize(130, 468);
 		menuPanel.setLocation(10, 42);
-		
+
 		settingsPanel = new SettingsPanel();
 		settingsPanel.setSize(673, 470);
 		settingsPanel.setLocation(150, 42);
 		settingsPanel.setVisible(false);
-		
+
 		scrapingPanel = new ScrapingPanel();
 		scrapingPanel.setSize(673, 468);
 		scrapingPanel.setLocation(150, 42);
 		scrapingPanel.setVisible(true);
-		
+
 		helpPanel = new HelpPanel();
 		helpPanel.setSize(673, 468);
 		helpPanel.setLocation(150, 42);
 		helpPanel.setVisible(false);
-		
+
 		analysisPanel = new AnalysisPanel();
 		analysisPanel.setSize(673, 468);
 		analysisPanel.setLocation(150, 42);
 		analysisPanel.setVisible(false);
-		
+
 		titleLabel = new JLabel(language.getAppTitle());
 		titleLabel.setForeground(Color.GRAY);
 		titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		titleLabel.setBounds(371, 11, 159, 20);
 		getContentPane().add(titleLabel);
-		
+
 		contentPane.add(menuPanel);
 		contentPane.add(scrapingPanel);
 		contentPane.add(settingsPanel);
 		contentPane.add(helpPanel);
 		contentPane.add(analysisPanel);
-		
-		
-		
-		
+
 	}
 
 	@Override
 	public void updateActivePanel(PanelType type) {
-		
-		
+
 		settingsPanel.setVisible(false);
 		scrapingPanel.setVisible(false);
 		analysisPanel.setVisible(false);
 		helpPanel.setVisible(false);
-		
-		
-		switch(type) {
+
+		switch (type) {
 		case Settings:
 			settingsPanel.setVisible(true);
 			break;
@@ -157,10 +148,9 @@ public class MainFrame extends JFrame implements IActivePanelObserver, ILanguage
 
 	@Override
 	public void updateOnLanguageChange() {
-		
+
 		titleLabel.setText(appState.getActiveLanguage().getAppTitle());
-		
+
 	}
 
-	
 }

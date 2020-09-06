@@ -7,48 +7,43 @@ public class CroatianLanguage implements ILanguage {
 
 	@Override
 	public ArrayList<String> getCommonWords() {
-		return new ArrayList<String>(
-				Arrays.asList("vijesti", "novosti", "sport", "politika", "horoskop", "moda", "news", "home", "life",
-						"style", "life&style", "viral", "video", "pročitajte", "video:", "foto","foto:", "nova","novi","novo", "pogledajte","pročitajte",
-						"rtl","vijesti","svijet","info","hrvatska","zanimljivosti"));
-		
+		return new ArrayList<String>(Arrays.asList("vijesti", "novosti", "sport", "politika", "horoskop", "moda",
+				"news", "home", "life", "style", "life&style", "viral", "video", "pročitajte", "video:", "foto",
+				"foto:", "nova", "novi", "novo", "pogledajte", "pročitajte", "rtl", "vijesti", "svijet", "info",
+				"hrvatska", "zanimljivosti"));
 
 	}
 
 	@Override
 	public ArrayList<String> getVerbs() {
-		return new ArrayList<String>(Arrays.asList("sam","smo", "ste",
-				"biti", "bio", "bila", "bilo", "bili", "imam", "imaš", "ima", "imamo", "imate", "imaju", "imati",
-				"ćeš", "ćemo", "ćete", "jesam", "jesi", "jest", "jesmo", "jeste", "jesu", "nisam", "nisi", "nije",
-				"nismo", "niste", "nisu","može","mogu","možemo"));
-		
+		return new ArrayList<String>(Arrays.asList("sam", "smo", "ste", "biti", "bio", "bila", "bilo", "bili", "imam",
+				"imaš", "ima", "imamo", "imate", "imaju", "imati", "ćeš", "ćemo", "ćete", "jesam", "jesi", "jest",
+				"jesmo", "jeste", "jesu", "nisam", "nisi", "nije", "nismo", "niste", "nisu", "može", "mogu", "možemo"));
+
 	}
 
 	@Override
 	public ArrayList<String> getPrepositions() {
-		return new ArrayList<String>(
-				Arrays.asList("ispod", "pored", "nakon", "iza", "ispred", "pokraj", "kod"));
+		return new ArrayList<String>(Arrays.asList("ispod", "pored", "nakon", "iza", "ispred", "pokraj", "kod"));
 	}
 
 	@Override
 	public ArrayList<String> getPronouns() {
-		return new ArrayList<String>(Arrays.asList("ona", "ono", "oni","ovo",
-				"mene", "tebe", "njega", "nju", "nas", "vas", "njih", "onaj", "onog", "onom",
-				"onome", "onoj", "koji", "koja", "kojo", "koje", "kojim", "kojima", "kojemu", "jedan", "jedna", "jedno",
-				"jednom", "jednoj", "jednom", "koliko", "kada", "kad", "kud", "kuda", "moj", "moja", "moje", "moji",
-				"tvoj", "tvoja", "tvoje", "tvoji", "njegov", "njegova", "njegovi", "njegove", "njezin", "njen", "njeno",
-				"njena", "njezina", "njeni", "njezini", "njezine", "svoj", "svoja", "svoje", "svog", "svoga", "svoji",
-				"svojih", "meni", "nam", "nama", "njemu", "njoj", "zašto", "zato", "gdje", "tamo", "neki", "neka",
-				"neko", "sav", "sva", "svo", "svi", "sve", "evo", "eno", "tamo", "ovdje", "negdje", "sada",
-				"tada", "prije", "tko", "što", "koga"));
+		return new ArrayList<String>(Arrays.asList("ona", "ono", "oni", "ovo", "mene", "tebe", "njega", "nju", "nas",
+				"vas", "njih", "onaj", "onog", "onom", "onome", "onoj", "koji", "koja", "kojo", "koje", "kojim",
+				"kojima", "kojemu", "jedan", "jedna", "jedno", "jednom", "jednoj", "jednom", "koliko", "kada", "kad",
+				"kud", "kuda", "moj", "moja", "moje", "moji", "tvoj", "tvoja", "tvoje", "tvoji", "njegov", "njegova",
+				"njegovi", "njegove", "njezin", "njen", "njeno", "njena", "njezina", "njeni", "njezini", "njezine",
+				"svoj", "svoja", "svoje", "svog", "svoga", "svoji", "svojih", "meni", "nam", "nama", "njemu", "njoj",
+				"zašto", "zato", "gdje", "tamo", "neki", "neka", "neko", "sav", "sva", "svo", "svi", "sve", "evo",
+				"eno", "tamo", "ovdje", "negdje", "sada", "tada", "prije", "tko", "što", "koga"));
 	}
 
 	@Override
 	public ArrayList<String> getConjunctions() {
-		return new ArrayList<String>(Arrays.asList("čak", "niti", "pak",
-				"ili", "ali", "dok", "god", "nego", "već", "kad", "samo", "osim", "dakle", "zato",
-				"stoga", "čim", "pošto", "kako", "jer", "ako", "iako", "što", "gdje", "kada", "kad", "kao",
-				"nimalo", "...", "!!!", "???", "zašto", "još", "zbog"));
+		return new ArrayList<String>(Arrays.asList("čak", "niti", "pak", "ili", "ali", "dok", "god", "nego", "već",
+				"kad", "samo", "osim", "dakle", "zato", "stoga", "čim", "pošto", "kako", "jer", "ako", "iako", "što",
+				"gdje", "kada", "kad", "kao", "nimalo", "...", "!!!", "???", "zašto", "još", "zbog"));
 	}
 
 	@Override
@@ -73,14 +68,14 @@ public class CroatianLanguage implements ILanguage {
 
 	@Override
 	public ArrayList<String> getUrls() {
-		return new ArrayList<String>(Arrays.asList("https://www.dnevnik.hr/", "https://www.jutarnji.hr","https://www.rtl.hr/vijesti-hr" ));
+		return new ArrayList<String>(
+				Arrays.asList("https://www.dnevnik.hr/", "https://www.jutarnji.hr", "https://www.rtl.hr/vijesti-hr"));
 	}
 
 	@Override
 	public String scrapeTitle() {
 		return "Dohvati novosti";
 	}
-
 
 	@Override
 	public String settingsTitle() {
@@ -116,17 +111,17 @@ public class CroatianLanguage implements ILanguage {
 	public String applicationLanguageSubtitle() {
 		return "Promjena jezika također utječe na dohvat stranica i analizu podataka.";
 	}
-	
+
 	@Override
 	public String saveButton() {
 		return "Spremi";
 	}
-	
+
 	@Override
 	public String scrapeSubtitle() {
 		return "Dohvati najčešće teme s novinskih portala.";
 	}
-	
+
 	@Override
 	public String confirmExit() {
 		return "Jeste li sigurni da želite zatvoriti aplikaciju?";
@@ -187,11 +182,6 @@ public class CroatianLanguage implements ILanguage {
 	public String helpStepThreeB() {
 		return "b) Temi - pregled datuma na koje se zadana tema najčešće pojavila u vijestima.";
 	}
-
-//	@Override
-//	public LanguageType getLanguageType() {
-//		return LanguageType.Croatian;
-//	}
 
 	@Override
 	public String sqlError() {
@@ -278,5 +268,4 @@ public class CroatianLanguage implements ILanguage {
 		return "Datumi";
 	}
 
-	
 }

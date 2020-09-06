@@ -24,7 +24,6 @@ public class ScraperJob {
 
 	public void populateList() {
 
-		
 		try {
 
 			this.doc = Jsoup.connect(url).timeout(6000).get();
@@ -45,7 +44,7 @@ public class ScraperJob {
 					}
 
 				}
-				
+
 			}
 
 		} catch (IOException e1) {

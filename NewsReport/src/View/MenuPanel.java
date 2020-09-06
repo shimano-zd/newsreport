@@ -65,7 +65,7 @@ public class MenuPanel extends JPanel implements ILanguageStateObserver {
 		helpButton.setBackground(Color.WHITE);
 		helpButton.setBounds(10, 113, 110, 23);
 		add(helpButton);
-		
+
 		refreshLanguage();
 	}
 
@@ -105,16 +105,16 @@ public class MenuPanel extends JPanel implements ILanguageStateObserver {
 
 			}
 		});
-		
+
 		exitButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				if (JOptionPane.showConfirmDialog( null,appState.getActiveLanguage().confirmExit(),"",
-			            JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
-			            System.exit(0);
-				
+
+				if (JOptionPane.showConfirmDialog(null, appState.getActiveLanguage().confirmExit(), "",
+						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+					System.exit(0);
+
 			}
 		});
 	}
@@ -123,7 +123,7 @@ public class MenuPanel extends JPanel implements ILanguageStateObserver {
 	public void updateOnLanguageChange() {
 		refreshLanguage();
 	}
-	
+
 	private void refreshLanguage() {
 
 		ILanguage activeLanguage = appState.getActiveLanguage();
@@ -133,6 +133,5 @@ public class MenuPanel extends JPanel implements ILanguageStateObserver {
 		exitButton.setText(activeLanguage.exitMenuTitle());
 		analysisButton.setText(activeLanguage.analysisMenuTitle());
 	}
-	
-	
+
 }

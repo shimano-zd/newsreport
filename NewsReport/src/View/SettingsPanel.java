@@ -14,7 +14,7 @@ import Controller.ApplicationState;
 import Model.LanguageType;
 import java.awt.Font;
 
-public class SettingsPanel extends JPanel implements ILanguageStateObserver{
+public class SettingsPanel extends JPanel implements ILanguageStateObserver {
 
 	private JLabel englishIcon;
 	private JLabel croatianIcon;
@@ -31,13 +31,13 @@ public class SettingsPanel extends JPanel implements ILanguageStateObserver{
 
 		appState = ApplicationState.instance();
 		appState.addLanguageObserver(this);
-		
+
 		createComponents();
 		activateComponents();
 	}
 
 	private void createComponents() {
-		
+
 		englishIcon = new JLabel("");
 		englishIcon.setIcon(new ImageIcon(getClass().getResource("/images/icons8-great-britain-40.png")));
 		englishIcon.setBounds(10, 88, 42, 30);
@@ -48,17 +48,17 @@ public class SettingsPanel extends JPanel implements ILanguageStateObserver{
 		croatianIcon.setIcon(new ImageIcon(getClass().getResource("/images/icons8-croatia-40.png")));
 		croatianIcon.setBounds(62, 88, 42, 30);
 		add(croatianIcon);
-		
+
 		settingsTitle = new JLabel("");
 		settingsTitle.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		settingsTitle.setBounds(10, 11, 211, 22);
 		add(settingsTitle);
-		
+
 		settingsSubtitle = new JLabel("");
 		settingsSubtitle.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		settingsSubtitle.setBounds(10, 44, 590, 20);
 		add(settingsSubtitle);
-		
+
 		refreshLanguage();
 	}
 
@@ -138,28 +138,16 @@ public class SettingsPanel extends JPanel implements ILanguageStateObserver{
 
 	}
 
-	
-	
 	private void refreshLanguage() {
 		settingsTitle.setText(appState.getActiveLanguage().applicationLanguageTitle());
 		settingsSubtitle.setText(appState.getActiveLanguage().applicationLanguageSubtitle());
-		
-//		titleLabel.setText(language.getAppTitle());
-//		webPanel.setTitle(language.getWebPanelTitle());
-//		webPanel.setUrls(language.getUrls());
-//		webPanel.setScrapeButtonText(language.getScrapeTitle());
-//		webPanel.setAnalyzeButtonText(language.getAnalyzeTitle());
-//		webPanel.getAnalyzeButton().setEnabled(false);
-//		webPanel.setScrapingLanguage(language);
-//		webPanel.resetData();
-//		webPanel.setWordCounter(language, null);
-		
+
 	}
 
 	@Override
 	public void updateOnLanguageChange() {
-		
+
 		refreshLanguage();
-		
+
 	}
 }

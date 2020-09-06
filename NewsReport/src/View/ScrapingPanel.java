@@ -173,6 +173,7 @@ public class ScrapingPanel extends JPanel implements ILanguageStateObserver {
 				SaveToDatabseAsyncTask saveToDatabase = new SaveToDatabseAsyncTask();
 				saveToDatabase.start();
 				buttonSave.setEnabled(false);
+				
 					
 			}
 		});

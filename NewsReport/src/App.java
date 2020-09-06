@@ -37,39 +37,6 @@ public class App {
 			}
 		});
 
-//		Scraper scraper = new Scraper();
-//		LanguageFactory lang = new CroatianLanguage();
-//	ArrayList<String> urls = lang.getUrls();
-//
-//		// kreiranje brojaca rijeci
-//		WordCounter counter = new WordCounter(scraper.scrapeWebsites(urls), lang);
-//
-//		// pohranimo rezultat tj vrsnih top 5 rijeci i njihov broj pojave
-//		ArrayList<NewsModel> res = counter.getMostFrequentWords();
-//
-//		for(NewsModel n : res) {
-//		System.out.println("Topic: "+n.getTopic() + " ---> count: " + n.getOccurrence());
-//
-//		}
-
-//		try {
-//			DBConnection con = new DBConnection();
-//
-//			// con.insertNewReportCro(res, 2019, 8, 27);
-//			ResultSet rs = con.getTopCroatianTopics(2019, 8, 27);
-//
-//			while (rs.next()) {
-//				System.out.println(rs.getString(1) + ": " + rs.getLong(3) + " occurrences");
-//			}
-//			con.closeSQLConnection();
-//
-//		} catch (ClassNotFoundException e) {
-//
-//			e.printStackTrace();
-//		} catch (SQLException e) {
-//
-//			e.printStackTrace();
-//		}
 
 	}
 

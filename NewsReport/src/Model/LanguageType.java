@@ -2,6 +2,5 @@ package Model;
 
 public enum LanguageType {
 
-	Croatian,
-	English
+	Croatian, English
 }

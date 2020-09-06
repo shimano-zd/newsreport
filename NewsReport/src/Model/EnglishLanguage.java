@@ -5,44 +5,43 @@ import java.util.Arrays;
 
 public class EnglishLanguage implements ILanguage {
 
-	
 	@Override
 	public ArrayList<String> getCommonWords() {
 
-		return new ArrayList<String>(
-				Arrays.asList("a","an","the","news", "sports", "sport", "breaking", "opinion", "culture", "lifestyle", "life", "style",
-						"more", "search", "world", "business", "tech", "read", "check", "weather",
-						"best","worst","better","worse","more","less","few","fewer","top", "new","newest","old","oldest"));
-		
+		return new ArrayList<String>(Arrays.asList("a", "an", "the", "news", "sports", "sport", "breaking", "opinion",
+				"culture", "lifestyle", "life", "style", "more", "search", "world", "business", "tech", "read", "check",
+				"weather", "best", "worst", "better", "worse", "more", "less", "few", "fewer", "top", "new", "newest",
+				"old", "oldest"));
+
 	}
 
 	@Override
 	public ArrayList<String> getVerbs() {
-		return new ArrayList<String>(Arrays.asList("am", "are", "is", "was", "were", "been", "have",
-				"has", "had", "do", "does", "done", "will", "would", "can", "could", "say", "says", "go", "goes", "try", "tries", "get", "gets", "take", "takes"));
-		
+		return new ArrayList<String>(Arrays.asList("am", "are", "is", "was", "were", "been", "have", "has", "had", "do",
+				"does", "done", "will", "would", "can", "could", "say", "says", "go", "goes", "try", "tries", "get",
+				"gets", "take", "takes"));
+
 	}
 
 	@Override
 	public ArrayList<String> getPrepositions() {
-		return new ArrayList<String>(Arrays.asList("at", "as", "about", "after", "above", "aside", "out",
-				"on", "over", "in", "inside", "up", "under", "through", "to", "from", "between","for", "of", "off"));
-		
+		return new ArrayList<String>(Arrays.asList("at", "as", "about", "after", "above", "aside", "out", "on", "over",
+				"in", "inside", "up", "under", "through", "to", "from", "between", "for", "of", "off"));
 
 	}
 
 	@Override
 	public ArrayList<String> getPronouns() {
-		return new ArrayList<String>(Arrays.asList("I", "me", "he", "she", "it", "us", "we", "you",
-				"they", "them", "that", "those", "whose", "where", "when", "while", "whom", "which", "why", "with", "who",
-				"mine", "my", "his", "her", "its", "our", "ours", "yours", "your", "their", "theirs", "how", "what", "one", "two", "three", "four"));
+		return new ArrayList<String>(Arrays.asList("I", "me", "he", "she", "it", "us", "we", "you", "they", "them",
+				"that", "those", "whose", "where", "when", "while", "whom", "which", "why", "with", "who", "mine", "my",
+				"his", "her", "its", "our", "ours", "yours", "your", "their", "theirs", "how", "what", "one", "two",
+				"three", "four"));
 
 	}
 
 	@Override
 	public ArrayList<String> getConjunctions() {
-		return new ArrayList<String>(
-				Arrays.asList("and", "so", "yet", "but", "not", "no", "as", "however", "though"));
+		return new ArrayList<String>(Arrays.asList("and", "so", "yet", "but", "not", "no", "as", "however", "though"));
 
 	}
 
@@ -68,16 +67,15 @@ public class EnglishLanguage implements ILanguage {
 
 	@Override
 	public ArrayList<String> getUrls() {
-		return new ArrayList<>(Arrays.asList("https://www.theguardian.com/international", "https://www.independent.co.uk/", "https://www.bbc.com/news"));
-		
+		return new ArrayList<>(Arrays.asList("https://www.theguardian.com/international",
+				"https://www.independent.co.uk/", "https://www.bbc.com/news"));
+
 	}
 
-	
 	@Override
 	public String scrapeTitle() {
 		return "Scrape news";
 	}
-
 
 	@Override
 	public String settingsTitle() {
@@ -113,17 +111,17 @@ public class EnglishLanguage implements ILanguage {
 	public String applicationLanguageSubtitle() {
 		return "Changing the language also affects the scraped sites and database analysis.";
 	}
-	
+
 	@Override
 	public String saveButton() {
 		return "Save";
 	}
-	
+
 	@Override
 	public String scrapeSubtitle() {
 		return "Get the most frequent news topics from news portals.";
 	}
-	
+
 	@Override
 	public String confirmExit() {
 		return "Are you sure you want to close the application?";
@@ -236,13 +234,13 @@ public class EnglishLanguage implements ILanguage {
 
 	@Override
 	public String queryInsertTopicForDate() {
-		
+
 		return "EXECUTE addEngTopicToDate ?, ?, ?, ?, ?";
 	}
 
 	@Override
 	public String queryInsertNewDate() {
-		
+
 		return "EXECUTE addNewDate ?, ?, ?";
 	}
 

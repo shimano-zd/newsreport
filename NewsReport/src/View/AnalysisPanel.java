@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -140,10 +141,6 @@ public class AnalysisPanel extends JPanel implements ILanguageStateObserver {
 		add(searchByDateButton);
 
 		dataset = new DefaultCategoryDataset();
-//		dataset.setValue(50.5, "Occurrence", "Clinton");
-//		dataset.setValue(60.2, "Occurrence", "Bush");
-//		dataset.setValue(48.1, "Occurrence", "Biden");
-//		dataset.setValue(40.2, "Occurrence", "Obama");
 
 		chart = ChartFactory.createBarChart("Data Chart", "", "", dataset);
 		CategoryPlot plot = chart.getCategoryPlot();
