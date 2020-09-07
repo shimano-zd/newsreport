@@ -29,3 +29,9 @@ Koristi se za potrebe generiranja različitih jezika (hrvatski i engleski) i UI 
 S obzirom da dohvaćanje i analiza podataka znaju potrajati par sekundi, potrebno je osloboditi UI thread od takvih "težih" radnji kako bi ostao responzivan i dao korisniku do znanja da se nešto događa u međuvremenu.
 Scraping i komunikacija s bazom se odvijaju u zasebnim threadovima, za vrijeme čega UI prikazuje animaciju "loadinga".
 
+## Vanjski dependecy
+jFreeChart - prikaz podataka na grafu
+jCommon - potreban za graf
+jDatePicker - komponenta za odabir datuma
+jsoup - potreban za scraping
+mssql-jdbc - driver potreban za komunikaciju s SQL serverom
