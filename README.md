@@ -31,7 +31,11 @@ Scraping i komunikacija s bazom se odvijaju u zasebnim threadovima, za vrijeme Ä
 
 ## Vanjski dependecy
 jFreeChart - prikaz podataka na grafu
+
 jCommon - potreban za graf
+
 jDatePicker - komponenta za odabir datuma
+
 jsoup - potreban za scraping
+
 mssql-jdbc - driver potreban za komunikaciju s SQL serverom
