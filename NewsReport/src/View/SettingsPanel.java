@@ -15,7 +15,7 @@ import Model.LanguageType;
 import java.awt.Font;
 
 /**
- * The panel used to change the application's language state.
+ * The panel used to change the app's language state.
  * @author Sime
  *
  */
