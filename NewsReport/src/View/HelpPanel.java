@@ -11,6 +11,11 @@ import Model.ILanguage;
 import javax.swing.JLabel;
 import java.awt.Font;
 
+/**
+ * A simple panel used to display information about several important parts of the application. 
+ * @author Sime
+ *
+ */
 public class HelpPanel extends JPanel implements ILanguageStateObserver {
 
 	private JLabel helpTitle;
@@ -69,6 +74,9 @@ public class HelpPanel extends JPanel implements ILanguageStateObserver {
 		refreshLanguage();
 	}
 
+	/**
+	 * Used to get the new application language from the observable state.
+	 */
 	@Override
 	public void updateOnLanguageChange() {
 		refreshLanguage();

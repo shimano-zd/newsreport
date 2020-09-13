@@ -42,6 +42,11 @@ import Model.NewsModel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+/**
+ * The panel used to analyze data from the database.
+ * @author Sime
+ *
+ */
 public class AnalysisPanel extends JPanel implements ILanguageStateObserver {
 
 	private JLabel analysisPanelSubtitle;
@@ -165,6 +170,11 @@ public class AnalysisPanel extends JPanel implements ILanguageStateObserver {
 		refreshLanguage();
 	};
 
+	/**
+	 * Displays specific topics and their occurrence for a provided date.
+	 * @param topicsOnDate A list of topics that appeared on the specific date.
+	 * @param dateString A title that should appear above the graph. The title should be the chosen date of the search.
+	 */
 	private void showTopicsOnDateChart(ArrayList<NewsModel> topicsOnDate, String dateString) {
 
 		dataset = new DefaultCategoryDataset();
@@ -179,6 +189,11 @@ public class AnalysisPanel extends JPanel implements ILanguageStateObserver {
 
 	}
 	
+	/**
+	 * Displays dates on which a specific topic appeared in the news.
+	 * @param dates A list of news model that contain the dates and the occurrences of a specific topic.
+	 * @param topic A specific topic, such as "police" or "flood" that is used to display the title of the graph.
+	 */
 	private void showDatesForTopicChart(ArrayList<NewsModel> dates, String topic) {
 		dataset = new DefaultCategoryDataset();
 		for (NewsModel n : dates) {
@@ -200,6 +215,7 @@ public class AnalysisPanel extends JPanel implements ILanguageStateObserver {
 	}
 
 	private void activate() {
+		
 		searchByTopicButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -222,6 +238,9 @@ public class AnalysisPanel extends JPanel implements ILanguageStateObserver {
 		});
 	};
 
+	/**
+	 * Updates the component on language change. This is called from the observable state.
+	 */
 	@Override
 	public void updateOnLanguageChange() {
 		refreshLanguage();
@@ -239,6 +258,12 @@ public class AnalysisPanel extends JPanel implements ILanguageStateObserver {
 		chartPanel.setVisible(false);
 	}
 
+	/**
+	 * A task (thread) used to retrieve topics on a specific date.
+	 * This is called by pressing a button that searches by a given date.
+	 * @author Sime
+	 *
+	 */
 	private class GetTopicOnDateAsyncTask extends Thread {
 		@Override
 		public void run() {
@@ -273,6 +298,12 @@ public class AnalysisPanel extends JPanel implements ILanguageStateObserver {
 		}
 	}
 
+	/**
+	 * A task (thread) used to retrieve dates and occurrences for a specific topic.
+	 * This is activated by pressing the button for searching a topic.
+	 * @author Sime
+	 *
+	 */
 	private class GetDatesForTopicAsyncTask extends Thread {
 		@Override
 		public void run() {
@@ -304,6 +335,9 @@ public class AnalysisPanel extends JPanel implements ILanguageStateObserver {
 		}
 	}
 
+	/**
+	 * Method used to start the loading animation on the main thread (UI) while the background thread fetches the data.
+	 */
 	private void startLoading() {
 		searchByDateButton.setEnabled(false);
 		searchByTopicButton.setEnabled(false);
@@ -312,6 +346,9 @@ public class AnalysisPanel extends JPanel implements ILanguageStateObserver {
 
 	}
 
+	/**
+	 * Method used to stop the loading animation once the background thread is finished fetching.
+	 */
 	private void stopLoading() {
 		searchByDateButton.setEnabled(true);
 		searchByTopicButton.setEnabled(true);

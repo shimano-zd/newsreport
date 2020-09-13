@@ -1,7 +1,12 @@
 package Model;
 
 import java.util.Date;
-
+/**
+ * A model class representing a news report.
+ * The class contains the topic of the news, the date on which it was retrieved and the occurrence of the topic.
+ * @author Sime
+ *
+ */
 public class NewsModel {
 
 	private String topic;

@@ -11,6 +11,11 @@ import java.util.ArrayList;
 import Model.LanguageType;
 import Model.NewsModel;
 
+/**
+ * Class used to connect to the database and perform CRUD operations.
+ * @author Sime
+ *
+ */
 public class DBConnection {
 
 	private String database = "Sime";
@@ -30,6 +35,12 @@ public class DBConnection {
 		appState = ApplicationState.instance();
 	}
 
+	/**
+	 * Gets dates on which a specific topic appeared in the news portals and their occurrence.
+	 * @param topic A string representing the topic of the news, e.g. "police" or "flood"
+	 * @return Returns a list of NewsModel with specific dates and occurrence of the topic.
+	 * @throws SQLException
+	 */
 	public ArrayList<NewsModel> getDatesForTopic(String topic) throws SQLException {
 
 		openSQLConnection();
@@ -54,6 +65,14 @@ public class DBConnection {
 
 	}
 
+	/**
+	 * Gets top five news that appeared in news portals on a specific date.
+	 * @param year Year (int) of the date that we're searching on.
+	 * @param month Month (int) of the date that we're searching on.
+	 * @param day Day (int) of the date that we're searching on.
+	 * @return Returns a list of NewsModel. The select procedure return the top 5 results by default.
+	 * @throws SQLException
+	 */
 	public ArrayList<NewsModel> getNewsReportFromDate(int year, int month, int day) throws SQLException {
 
 		openSQLConnection();
@@ -80,6 +99,14 @@ public class DBConnection {
 
 	}
 
+	/**
+	 * Inserts new reports into the database.
+	 * @param topics A list of topics that appeared on a specific date.
+	 * @param year
+	 * @param month
+	 * @param day
+	 * @throws SQLException
+	 */
 	public void insertNewReport(ArrayList<NewsModel> topics, int year, int month, int day) throws SQLException {
 
 		openSQLConnection();
@@ -106,6 +133,13 @@ public class DBConnection {
 
 	}
 
+	/**
+	 * Inserts the new date in the database.
+	 * @param year The date's year (int).
+	 * @param month The date's month (int).
+	 * @param day The date's day (int).
+	 * @throws SQLException
+	 */
 	private void insertNewDate(int year, int month, int day) throws SQLException {
 
 		openSQLConnection();
@@ -122,6 +156,11 @@ public class DBConnection {
 
 	}
 
+	/**
+	 * Inserts the new topic into the database.
+	 * @param topic String representation of the topic.
+	 * @throws SQLException
+	 */
 	private void insertNewTopic(String topic) throws SQLException {
 
 		openSQLConnection();
@@ -133,6 +172,7 @@ public class DBConnection {
 		closeSQLConnection();
 	}
 
+	
 	private void openSQLConnection() throws SQLException {
 		this.connection = DriverManager.getConnection(url, username, password);
 	}

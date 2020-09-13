@@ -3,6 +3,11 @@ package Model;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * The class that defines the string constants for the Croatian language.
+ * @author Sime
+ *
+ */
 public class CroatianLanguage implements ILanguage {
 
 	@Override

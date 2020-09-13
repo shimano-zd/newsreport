@@ -15,6 +15,11 @@ import View.IActivePanelObserver;
 import View.ILanguageStateObservable;
 import View.ILanguageStateObserver;
 
+/**
+ * Class responsible for holding the application state. The class is instantiated as a singleton and holds the app's language and active panel.
+ * @author Sime
+ *
+ */
 public class ApplicationState implements ILanguageStateObservable, IActivePanelObservable {
 
 	private static ApplicationState state;
@@ -42,19 +47,29 @@ public class ApplicationState implements ILanguageStateObservable, IActivePanelO
 		return appLanguage;
 	}
 
+	/**
+	 * Exposed method for changing the application language from any observer.
+	 * @param language Language type that the application should use.
+	 */
 	public void changeApplicationLanguage(LanguageType language) {
 		appLanguage = languageFactory.createLanguage(language);
-		notifyStateChange();
+		notifyLanguageChange();
 	}
 
+	/**
+	 * Notifies any subscribed observer about the app's state change.
+	 */
 	@Override
-	public void notifyStateChange() {
+	public void notifyLanguageChange() {
 		for (ILanguageStateObserver observer : languageObservers) {
 			observer.updateOnLanguageChange();
 		}
 
 	}
 
+	/**
+	 * Used to add language observers.
+	 */
 	@Override
 	public void addLanguageObserver(ILanguageStateObserver observer) {
 		languageObservers.add(observer);
@@ -67,6 +82,9 @@ public class ApplicationState implements ILanguageStateObservable, IActivePanelO
 
 	}
 
+	/**
+	 * Method that should be called from observers to change the app's active panel.
+	 */
 	@Override
 	public void changeActivePanel(PanelType type) {
 
@@ -75,6 +93,9 @@ public class ApplicationState implements ILanguageStateObservable, IActivePanelO
 		}
 	}
 
+	/**
+	 * Used to add panel observers.
+	 */
 	@Override
 	public void addPanelObserver(IActivePanelObserver observer) {
 		activePanelObservers.add(observer);

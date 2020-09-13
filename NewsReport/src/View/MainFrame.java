@@ -43,6 +43,11 @@ import Controller.Scraper;
 import org.jdatepicker.JDatePicker;
 import javax.swing.JTabbedPane;
 
+/**
+ * The main UI window of the app. The class contains the app's panels.
+ * @author Sime
+ *
+ */
 public class MainFrame extends JFrame implements IActivePanelObserver, ILanguageStateObserver {
 
 	private JPanel contentPane;
@@ -120,6 +125,10 @@ public class MainFrame extends JFrame implements IActivePanelObserver, ILanguage
 
 	}
 
+	/**
+	 * Used to change the visibility of the active panel.
+	 * This is called from the app's state after a component requests the change.
+	 */
 	@Override
 	public void updateActivePanel(PanelType type) {
 
@@ -146,6 +155,9 @@ public class MainFrame extends JFrame implements IActivePanelObserver, ILanguage
 		}
 	}
 
+	/**
+	 * Updates the main window's title depending on the app's language state.
+	 */
 	@Override
 	public void updateOnLanguageChange() {
 

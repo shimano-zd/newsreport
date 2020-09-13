@@ -9,6 +9,11 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+/**
+ * A class responsible for the actual scraping logic. Used by the class Scraper to perform the scraping task.
+ * @author Sime
+ *
+ */
 public class ScraperJob {
 
 	private ArrayList<String> listOfWords;
@@ -22,6 +27,9 @@ public class ScraperJob {
 
 	}
 
+	/**
+	 * Inserts scraped information in the list. The list is passed from the parent (Scraper class).
+	 */
 	public void populateList() {
 
 		try {

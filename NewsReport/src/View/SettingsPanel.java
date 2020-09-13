@@ -14,6 +14,11 @@ import Controller.ApplicationState;
 import Model.LanguageType;
 import java.awt.Font;
 
+/**
+ * The panel used to change the application's language.
+ * @author Sime
+ *
+ */
 public class SettingsPanel extends JPanel implements ILanguageStateObserver {
 
 	private JLabel englishIcon;
@@ -138,12 +143,16 @@ public class SettingsPanel extends JPanel implements ILanguageStateObserver {
 
 	}
 
+	
 	private void refreshLanguage() {
 		settingsTitle.setText(appState.getActiveLanguage().applicationLanguageTitle());
 		settingsSubtitle.setText(appState.getActiveLanguage().applicationLanguageSubtitle());
 
 	}
-
+	
+	/**
+	 * Update the panel's own language in response to app's state change.
+	 */
 	@Override
 	public void updateOnLanguageChange() {
 

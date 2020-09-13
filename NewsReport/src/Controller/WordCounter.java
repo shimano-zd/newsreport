@@ -12,6 +12,11 @@ import Model.ILanguage;
 import Model.ILanguageFactory;
 import Model.NewsModel;
 
+/**
+ * A class responsible for counting the occurrence of specific topics. The topics come from the Scraper's result.
+ * @author Sime
+ *
+ */
 public class WordCounter {
 
 	private List<String> listOfWords;
@@ -26,6 +31,10 @@ public class WordCounter {
 
 	}
 
+	/**
+	 * Gets five most frequent words that have been mentioned in the news portals.
+	 * @return A list of NewsModel with top five results.
+	 */
 	public ArrayList<NewsModel> getMostFrequentWords() {
 
 		ArrayList<String> tempArray = new ArrayList<String>();
@@ -75,6 +84,13 @@ public class WordCounter {
 
 	}
 
+	/**
+	 * A comparator used to sort the collection of news models by their occurrence. 
+	 * @param <K> The key to be used in the comparator. In the news model, this is the topic.
+	 * @param <V> The value for the comparator. In the news model, this is the occurrence.
+	 * @param map The map with topic/occurrences from the scraped sites.
+	 * @return Returns a map of top five results.
+	 */
 	private <K, V extends Comparable<? super V>> Map<K, V> sortByValue(Map<K, V> map) {
 		List<Entry<K, V>> list = new ArrayList<>(map.entrySet());
 		list.sort(Entry.comparingByValue());

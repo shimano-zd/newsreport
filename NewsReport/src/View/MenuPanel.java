@@ -15,6 +15,11 @@ import Controller.ApplicationState;
 import Model.ILanguage;
 import Model.PanelType;
 
+/**
+ * The panel used to switch between different active panels on the main window.
+ * @author Sime
+ *
+ */
 public class MenuPanel extends JPanel implements ILanguageStateObserver {
 
 	private JButton scrapingButton;
@@ -119,6 +124,9 @@ public class MenuPanel extends JPanel implements ILanguageStateObserver {
 		});
 	}
 
+	/**
+	 * Update the panel's language content in response to the app's state.
+	 */
 	@Override
 	public void updateOnLanguageChange() {
 		refreshLanguage();

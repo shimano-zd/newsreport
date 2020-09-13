@@ -2,6 +2,11 @@ package Model;
 
 import java.util.ArrayList;
 
+/**
+ * The interface that should be implemented by any specific language.
+ * @author Sime
+ *
+ */
 public interface ILanguage {
 
 	ArrayList<String> getCommonWords();

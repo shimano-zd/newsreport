@@ -3,6 +3,12 @@ package Model;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * The class that defines the string constants for the English language.
+ * @author Sime
+ *
+ */
+
 public class EnglishLanguage implements ILanguage {
 
 	@Override

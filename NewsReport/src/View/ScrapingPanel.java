@@ -29,6 +29,11 @@ import Model.DateLabelFormatter;
 import Model.ILanguage;
 import Model.NewsModel;
 
+/**
+ * The panel used to scrape the news portals for popular topics and store the retrieved data in the database.
+ * @author Sime
+ *
+ */
 public class ScrapingPanel extends JPanel implements ILanguageStateObserver {
 
 	private JTextArea textArea;
@@ -179,7 +184,11 @@ public class ScrapingPanel extends JPanel implements ILanguageStateObserver {
 		});
 	}
 	
-	
+	/**
+	 * A thread used to scrape the information in the background.
+	 * @author Sime
+	 *
+	 */
 	private class ScrapingAsyncTask extends Thread{
 
 		@Override
@@ -201,6 +210,11 @@ public class ScrapingPanel extends JPanel implements ILanguageStateObserver {
 		
 	}
 	
+	/**
+	 * A thread used to store the information in the database.
+	 * @author Sime
+	 *
+	 */
 	private class SaveToDatabseAsyncTask extends Thread{
 		@Override
 		public void run() {
@@ -224,13 +238,18 @@ public class ScrapingPanel extends JPanel implements ILanguageStateObserver {
 		}
 	}
 	
-	
+	/**
+	 * The method called by background threads to start the loading animation in the UI thread.
+	 */
 	private void startLoading() {
 		buttonSave.setEnabled(false);
 		buttonScrape.setEnabled(false);
 		loadingLabel.setVisible(true);
 	}
 
+	/**
+	 * Used to stop the loading animation after a thread's done.
+	 */
 	private void stopLoading() {
 		loadingLabel.setVisible(false);
 		buttonScrape.setEnabled(true);
@@ -272,6 +291,9 @@ public class ScrapingPanel extends JPanel implements ILanguageStateObserver {
 //
 //	}
 
+	/**
+	 * Displays the most frequent news topic in the panel's text area.
+	 */
 	private void showMostFrequentNews() {
 
 		textArea.setText("");
@@ -283,7 +305,9 @@ public class ScrapingPanel extends JPanel implements ILanguageStateObserver {
 
 	}
 
-	
+	/**
+	 * Update the language strings in response to app state.
+	 */
 	@Override
 	public void updateOnLanguageChange() {
 		refreshLanguage();
@@ -307,7 +331,10 @@ public class ScrapingPanel extends JPanel implements ILanguageStateObserver {
 
 	}
 
-	
+	/**
+	 * The method refreshes the "top five" news after a thread is done analyzing.
+	 * @param news
+	 */
 	private void refreshNews(ArrayList<NewsModel> news) {
 		topFive = news;
 		showMostFrequentNews();
