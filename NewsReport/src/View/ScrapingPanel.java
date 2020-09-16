@@ -173,7 +173,7 @@ public class ScrapingPanel extends JPanel implements ILanguageStateObserver {
 			public void actionPerformed(ActionEvent e) {
 
 				if (webSiteInputs.size() > 4) {
-					JOptionPane.showMessageDialog(null, "You can only search 5 sites at the same time!");
+					JOptionPane.showMessageDialog(null, appState.getActiveLanguage().youCanOnlySearchFiveSites());
 					return;
 				}
 

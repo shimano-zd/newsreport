@@ -300,4 +300,9 @@ public class EnglishLanguage implements ILanguage {
 		return " times.";
 	}
 
+	@Override
+	public String youCanOnlySearchFiveSites() {
+		return "You can only scrape up to five news sites!";
+	}
+
 }

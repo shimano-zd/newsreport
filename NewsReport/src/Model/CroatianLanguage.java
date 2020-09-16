@@ -293,4 +293,9 @@ public class CroatianLanguage implements ILanguage {
 		return " puta";
 	}
 
+	@Override
+	public String youCanOnlySearchFiveSites() {
+		return "Možete pretraživati najviše pet portala!";
+	}
+
 }

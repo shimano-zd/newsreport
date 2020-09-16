@@ -112,5 +112,7 @@ public interface ILanguage {
 	String topic();
 	String mentioned();
 	String times();
+	
+	String youCanOnlySearchFiveSites();
 
 }
