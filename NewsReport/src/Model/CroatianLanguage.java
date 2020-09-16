@@ -13,8 +13,8 @@ public class CroatianLanguage implements ILanguage {
 	@Override
 	public ArrayList<String> getCommonWords() {
 		return new ArrayList<String>(Arrays.asList("vijesti", "novosti", "sport", "politika", "horoskop", "moda",
-				"news", "home", "life", "style", "life&style", "viral", "video", "proÄitajte", "video:", "foto",
-				"foto:", "nova", "novi", "novo", "pogledajte", "proÄitajte", "rtl", "vijesti", "svijet", "info",
+				"news", "home", "life", "style", "life&style", "viral", "video", "proèitajte", "video:", "foto",
+				"foto:", "nova", "novi", "novo", "pogledajte", "rtl", "vijesti", "svijet", "info",
 				"hrvatska", "zanimljivosti"));
 
 	}
@@ -22,8 +22,8 @@ public class CroatianLanguage implements ILanguage {
 	@Override
 	public ArrayList<String> getVerbs() {
 		return new ArrayList<String>(Arrays.asList("sam", "smo", "ste", "biti", "bio", "bila", "bilo", "bili", "imam",
-				"imaÅ¡", "ima", "imamo", "imate", "imaju", "imati", "Ä‡eÅ¡", "Ä‡emo", "Ä‡ete", "jesam", "jesi", "jest",
-				"jesmo", "jeste", "jesu", "nisam", "nisi", "nije", "nismo", "niste", "nisu", "moÅ¾e", "mogu", "moÅ¾emo"));
+				"imaš", "ima", "imamo", "imate", "imaju", "imati", "æe", "æemo", "æete", "jesam", "jesi", "jest",
+				"jesmo", "jeste", "jesu", "nisam", "nisi", "nije", "nismo", "niste", "nisu", "moe", "mogu", "moemo"));
 
 	}
 
@@ -40,20 +40,20 @@ public class CroatianLanguage implements ILanguage {
 				"kud", "kuda", "moj", "moja", "moje", "moji", "tvoj", "tvoja", "tvoje", "tvoji", "njegov", "njegova",
 				"njegovi", "njegove", "njezin", "njen", "njeno", "njena", "njezina", "njeni", "njezini", "njezine",
 				"svoj", "svoja", "svoje", "svog", "svoga", "svoji", "svojih", "meni", "nam", "nama", "njemu", "njoj",
-				"zaÅ¡to", "zato", "gdje", "tamo", "neki", "neka", "neko", "sav", "sva", "svo", "svi", "sve", "evo",
-				"eno", "tamo", "ovdje", "negdje", "sada", "tada", "prije", "tko", "Å¡to", "koga"));
+				"zašto", "zato", "gdje", "tamo", "neki", "neka", "neko", "sav", "sva", "svo", "svi", "sve", "evo",
+				"eno", "tamo", "ovdje", "negdje", "sada", "tada", "prije", "tko", "što", "koga"));
 	}
 
 	@Override
 	public ArrayList<String> getConjunctions() {
-		return new ArrayList<String>(Arrays.asList("Äak", "niti", "pak", "ili", "ali", "dok", "god", "nego", "veÄ‡",
-				"kad", "samo", "osim", "dakle", "zato", "stoga", "Äim", "poÅ¡to", "kako", "jer", "ako", "iako", "Å¡to",
-				"gdje", "kada", "kad", "kao", "nimalo", "...", "!!!", "???", "zaÅ¡to", "joÅ¡", "zbog"));
+		return new ArrayList<String>(Arrays.asList("èak", "niti", "pak", "ili", "ali", "dok", "god", "nego", "veæ",
+				"kad", "samo", "osim", "dakle", "zato", "stoga", "èim", "pošto", "kako", "jer", "ako", "iako", "što",
+				"gdje", "kada", "kad", "kao", "nimalo", "...", "!!!", "???", "zašto", "još", "zbog"));
 	}
 
 	@Override
 	public String getAppTitle() {
-		return "IZVJEÅ TAJ VIJESTI";
+		return "IZVJEŠTAJ VIJESTI";
 	}
 
 	@Override
@@ -114,7 +114,7 @@ public class CroatianLanguage implements ILanguage {
 
 	@Override
 	public String applicationLanguageSubtitle() {
-		return "Promjena jezika takoÄ‘er utjeÄe na dohvat stranica i analizu podataka.";
+		return "Promjena jezika takoğer utjeèe na dohvat stranica i analizu podataka.";
 	}
 
 	@Override
@@ -124,12 +124,12 @@ public class CroatianLanguage implements ILanguage {
 
 	@Override
 	public String scrapeSubtitle() {
-		return "Dohvati najÄeÅ¡Ä‡e teme s novinskih portala.";
+		return "Dohvati najèešæe teme s novinskih portala.";
 	}
 
 	@Override
 	public String confirmExit() {
-		return "Jeste li sigurni da Å¾elite zatvoriti aplikaciju?";
+		return "Jeste li sigurni da elite zatvoriti aplikaciju?";
 	}
 
 	@Override
@@ -155,7 +155,7 @@ public class CroatianLanguage implements ILanguage {
 
 	@Override
 	public String helpMenuTitle() {
-		return "PomoÄ‡";
+		return "Pomoæ";
 	}
 
 	@Override
@@ -175,32 +175,32 @@ public class CroatianLanguage implements ILanguage {
 
 	@Override
 	public String helpStepThree() {
-		return "3. Na panelu \"Analiza\", pretraÅ¾ite bazu prema:";
+		return "3. Na panelu \"Analiza\", pretraite bazu prema:";
 	}
 
 	@Override
 	public String helpStepThreeA() {
-		return "a) Datumu - pregled najÄeÅ¡Ä‡ih tema za odreÄ‘eni datum.";
+		return "a) Datumu - pregled najèešæih tema za odreğeni datum.";
 	}
 
 	@Override
 	public String helpStepThreeB() {
-		return "b) Temi - pregled datuma na koje se zadana tema najÄeÅ¡Ä‡e pojavila u vijestima.";
+		return "b) Temi - pregled datuma na koje se zadana tema najèešæe pojavila u vijestima.";
 	}
 
 	@Override
 	public String sqlError() {
-		return "Dogodila se greÅ¡ka prilikom spajanja na bazu!";
+		return "Dogodila se greška prilikom spajanja na bazu!";
 	}
 
 	@Override
 	public String scrapeError() {
-		return "Dogodila se greÅ¡ka prilikom dohvata vijesti!";
+		return "Dogodila se greška prilikom dohvata vijesti!";
 	}
 
 	@Override
 	public String analysisSubtitle() {
-		return "Pretraga dosadaÅ¡njih vijesti po naslovima ili datumu.";
+		return "Pretraga dosadašnjih vijesti po naslovima ili datumu.";
 	}
 
 	@Override
@@ -260,12 +260,12 @@ public class CroatianLanguage implements ILanguage {
 
 	@Override
 	public String chartOccurrence() {
-		return "Broj Älanaka";
+		return "Broj èlanaka";
 	}
 
 	@Override
 	public String datesForTopicChartTitle() {
-		return "UÄestalost Älanaka za temu ";
+		return "Uèestalost èlanaka za temu ";
 	}
 
 	@Override
