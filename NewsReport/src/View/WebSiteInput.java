@@ -8,6 +8,11 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import java.util.UUID;
 
+/**
+ * A simple input panel for website urls. This panel can be dynamically added or removed from the Scraping panel.
+ * @author Sime
+ *
+ */
 public class WebSiteInput extends JPanel{
 	
 	private JTextField textField;

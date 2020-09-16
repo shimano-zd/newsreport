@@ -45,8 +45,6 @@ public class ScrapingPanel extends JPanel implements ILanguageStateObserver {
 	private JLabel scrapingPanelTitle;
 	private JLabel scrapingPanelSubtitle;
 	
-
-	private WebSiteInput websiteinput;
 	private ArrayList<WebSiteInput> webSiteInputs;
 
 	private JLabel webIcon;
@@ -131,20 +129,6 @@ public class ScrapingPanel extends JPanel implements ILanguageStateObserver {
 		scrapingPanelSubtitle.setBounds(70, 30, 553, 14);
 		add(scrapingPanelSubtitle);
 
-//		textFieldUrl4 = new JTextField();
-//		textFieldUrl4.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-//		textFieldUrl4.setEditable(true);
-//		textFieldUrl4.setColumns(10);
-//		textFieldUrl4.setBounds(10, 179, 300, 20);
-//		add(textFieldUrl4);
-
-//		textFieldUrl5 = new JTextField();
-//		textFieldUrl5.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-//		textFieldUrl5.setEditable(true);
-//		textFieldUrl5.setColumns(10);
-//		textFieldUrl5.setBounds(10, 210, 300, 20);
-//		add(textFieldUrl5);
-
 		buttonAddSite = new JButton("Add site");
 		buttonAddSite.setIcon(new ImageIcon(ScrapingPanel.class.getResource("/images/icon8-plus.png")));
 		buttonAddSite.setBackground(Color.WHITE);
@@ -161,15 +145,6 @@ public class ScrapingPanel extends JPanel implements ILanguageStateObserver {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-//				LoadingRunnable loading = new LoadingRunnable();
-//				try {
-//					loading.execute();
-//				} catch (Exception ex) {
-//					ExceptionHandler.handle(ex, appState.getActiveLanguage().scrapeError());
-//				} finally {
-//
-//				}
 
 				topFive.clear();
 				textArea.setText("");
@@ -224,6 +199,10 @@ public class ScrapingPanel extends JPanel implements ILanguageStateObserver {
 		});
 	}
 
+	/**
+	 * Removes a website input panel on which the user clicked "x".
+	 * @param panel Panel to remove.
+	 */
 	private void removeInputPanel(WebSiteInput panel) {
 
 		int indexOfPanel = webSiteInputs.indexOf(panel);
@@ -362,6 +341,9 @@ public class ScrapingPanel extends JPanel implements ILanguageStateObserver {
 
 	}
 
+	/**
+	 * Refresh the language of the panel and re-create website input fields.
+	 */
 	private void refreshLanguage() {
 		ILanguage activeLanguage = appState.getActiveLanguage();
 
