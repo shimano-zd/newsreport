@@ -273,4 +273,24 @@ public class CroatianLanguage implements ILanguage {
 		return "Datumi";
 	}
 
+	@Override
+	public String youHaveToProvideWebsite() {
+		return "Morate unijeti barem jednu stranicu!";
+	}
+
+	@Override
+	public String topic() {
+		return "Tema ";
+	}
+
+	@Override
+	public String mentioned() {
+		return " se spominje ";
+	}
+
+	@Override
+	public String times() {
+		return " puta";
+	}
+
 }

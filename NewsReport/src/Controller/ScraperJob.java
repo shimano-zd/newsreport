@@ -34,7 +34,7 @@ public class ScraperJob {
 
 		try {
 
-			this.doc = Jsoup.connect(url).timeout(6000).get();
+			this.doc = Jsoup.connect(url).timeout(6000).ignoreHttpErrors(true).get();
 
 			final Elements ele_h2 = doc.select("h2");
 			final Elements ele_h3 = doc.select("h3");
@@ -55,7 +55,7 @@ public class ScraperJob {
 
 			}
 
-		} catch (IOException e1) {
+		} catch (Exception e1) {
 
 			System.out.println("Scraper took too long to fetch " + url + ".... cancelling fetch");
 		}

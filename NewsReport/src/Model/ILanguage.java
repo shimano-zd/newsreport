@@ -106,5 +106,11 @@ public interface ILanguage {
 	String datesForTopicChartTitle();
 
 	String chartDates();
+	
+	String youHaveToProvideWebsite();
+	
+	String topic();
+	String mentioned();
+	String times();
 
 }

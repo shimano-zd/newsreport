@@ -9,10 +9,12 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.print.DocFlavor.STRING;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -28,9 +30,12 @@ import Controller.WordCounter;
 import Model.DateLabelFormatter;
 import Model.ILanguage;
 import Model.NewsModel;
+import javax.swing.SwingConstants;
 
 /**
- * The panel used to scrape the news portals for popular topics and store the retrieved data in the database.
+ * The panel used to scrape the news portals for popular topics and store the
+ * retrieved data in the database.
+ * 
  * @author Sime
  *
  */
@@ -39,9 +44,11 @@ public class ScrapingPanel extends JPanel implements ILanguageStateObserver {
 	private JTextArea textArea;
 	private JLabel scrapingPanelTitle;
 	private JLabel scrapingPanelSubtitle;
-	private JTextField textFieldUrl1;
-	private JTextField textFieldUrl2;
-	private JTextField textFieldUrl3;
+	
+
+	private WebSiteInput websiteinput;
+	private ArrayList<WebSiteInput> webSiteInputs;
+
 	private JLabel webIcon;
 	private JButton buttonScrape;
 	private JButton buttonSave;
@@ -55,6 +62,9 @@ public class ScrapingPanel extends JPanel implements ILanguageStateObserver {
 	private ArrayList<NewsModel> topFive;
 
 	private DBConnection dbConnection;
+	
+
+	private JButton buttonAddSite;
 
 	public ScrapingPanel() {
 
@@ -69,7 +79,6 @@ public class ScrapingPanel extends JPanel implements ILanguageStateObserver {
 
 		createComponents();
 		activateComponents();
-		
 
 	}
 
@@ -77,27 +86,7 @@ public class ScrapingPanel extends JPanel implements ILanguageStateObserver {
 
 		scraper = new Scraper();
 		topFive = new ArrayList<NewsModel>();
-
-		textFieldUrl1 = new JTextField();
-		textFieldUrl1.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		textFieldUrl1.setEditable(false);
-		textFieldUrl1.setBounds(10, 55, 300, 20);
-		add(textFieldUrl1);
-		textFieldUrl1.setColumns(10);
-
-		textFieldUrl2 = new JTextField();
-		textFieldUrl2.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		textFieldUrl2.setEditable(false);
-		textFieldUrl2.setBounds(10, 86, 300, 20);
-		add(textFieldUrl2);
-		textFieldUrl2.setColumns(10);
-
-		textFieldUrl3 = new JTextField();
-		textFieldUrl3.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		textFieldUrl3.setEditable(false);
-		textFieldUrl3.setBounds(10, 117, 300, 20);
-		add(textFieldUrl3);
-		textFieldUrl3.setColumns(10);
+		webSiteInputs = new ArrayList<WebSiteInput>();
 
 		webIcon = new JLabel("");
 		webIcon.setIcon(new ImageIcon(getClass().getResource("/images/icons8-internet-40.png")));
@@ -120,15 +109,15 @@ public class ScrapingPanel extends JPanel implements ILanguageStateObserver {
 		add(buttonSave);
 
 		loadingAnimation = new ImageIcon(getClass().getResource("/images/loading-spinner.gif"));
-		
+
 		loadingLabel = new JLabel(loadingAnimation);
 		loadingLabel.setBackground(Color.WHITE);
-		loadingLabel.setBounds(250, 200, 150, 150);
+		loadingLabel.setBounds(246, 262, 150, 150);
 		loadingLabel.setVisible(false);
 		add(loadingLabel);
 
 		textArea = new JTextArea();
-		textArea.setBounds(10, 152, 613, 260);
+		textArea.setBounds(10, 241, 613, 171);
 		textArea.setEditable(false);
 		add(textArea);
 
@@ -141,6 +130,27 @@ public class ScrapingPanel extends JPanel implements ILanguageStateObserver {
 		scrapingPanelSubtitle.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		scrapingPanelSubtitle.setBounds(70, 30, 553, 14);
 		add(scrapingPanelSubtitle);
+
+//		textFieldUrl4 = new JTextField();
+//		textFieldUrl4.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+//		textFieldUrl4.setEditable(true);
+//		textFieldUrl4.setColumns(10);
+//		textFieldUrl4.setBounds(10, 179, 300, 20);
+//		add(textFieldUrl4);
+
+//		textFieldUrl5 = new JTextField();
+//		textFieldUrl5.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+//		textFieldUrl5.setEditable(true);
+//		textFieldUrl5.setColumns(10);
+//		textFieldUrl5.setBounds(10, 210, 300, 20);
+//		add(textFieldUrl5);
+
+		buttonAddSite = new JButton("Add site");
+		buttonAddSite.setIcon(new ImageIcon(ScrapingPanel.class.getResource("/images/icon8-plus.png")));
+		buttonAddSite.setBackground(Color.WHITE);
+		buttonAddSite.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		buttonAddSite.setBounds(10, 52, 107, 23);
+		add(buttonAddSite);
 
 		refreshLanguage();
 
@@ -160,12 +170,13 @@ public class ScrapingPanel extends JPanel implements ILanguageStateObserver {
 //				} finally {
 //
 //				}
-				
+
 				topFive.clear();
-				
+				textArea.setText("");
+
 				ScrapingAsyncTask scrapingTask = new ScrapingAsyncTask();
 				scrapingTask.start();
-					
+
 			}
 		});
 
@@ -174,72 +185,143 @@ public class ScrapingPanel extends JPanel implements ILanguageStateObserver {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				
 				SaveToDatabseAsyncTask saveToDatabase = new SaveToDatabseAsyncTask();
 				saveToDatabase.start();
 				buttonSave.setEnabled(false);
-				
-					
+
+			}
+		});
+
+		buttonAddSite.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				if (webSiteInputs.size() > 4) {
+					JOptionPane.showMessageDialog(null, "You can only search 5 sites at the same time!");
+					return;
+				}
+
+				WebSiteInput newInput = new WebSiteInput();
+				webSiteInputs.add(newInput);
+
+				newInput.setBounds(10, (56 + (30 * webSiteInputs.size())), 300, 20);
+
+				add(newInput);
+				validate();
+				repaint();
+
+				newInput.getRemoveButton().addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						removeInputPanel(newInput);
+
+					}
+				});
+
 			}
 		});
 	}
-	
+
+	private void removeInputPanel(WebSiteInput panel) {
+
+		int indexOfPanel = webSiteInputs.indexOf(panel);
+
+		webSiteInputs.removeIf(x -> x.getId() == panel.getId());
+		remove(panel);
+		
+		for (WebSiteInput input : webSiteInputs) {
+
+			input.setBounds(10, (56 + (30 * (webSiteInputs.indexOf(input) +1))), 300, 20);
+
+		}
+
+		validate();
+		repaint();
+
+	}
+
 	/**
 	 * A thread used to scrape the information in the background.
+	 * 
 	 * @author Sime
 	 *
 	 */
-	private class ScrapingAsyncTask extends Thread{
+	private class ScrapingAsyncTask extends Thread {
 
 		@Override
 		public void run() {
-			
+
 			try {
+
+				ArrayList<String> websites = new ArrayList<String>();
 				
+				for(WebSiteInput input : webSiteInputs) {
+					websites.add(input.getText());
+				}
+
+				boolean websitesProvided = false;
+
+				for (String s : websites) {
+					if (!s.isEmpty() || !s.isBlank()) {
+						websitesProvided = true;
+						break;
+					}
+				}
+
+				if (!websitesProvided) {
+					JOptionPane.showMessageDialog(null, appState.getActiveLanguage().youHaveToProvideWebsite());
+					return;
+				}
 				startLoading();
-				ArrayList<String> scrapedData = scraper.scrapeWebsites(appState.getActiveLanguage().getUrls());
+				ArrayList<String> scrapedData = scraper.scrapeWebsites(websites);
+
 				refreshNews(new WordCounter(scrapedData, appState.getActiveLanguage()).getMostFrequentWords());
-				
-				
-			}catch(Exception ex) {
-				ExceptionHandler.handle(ex, appState.getActiveLanguage().scrapeError());;
-			}finally {
+
+			} catch (Exception ex) {
+				ExceptionHandler.handle(ex, appState.getActiveLanguage().scrapeError());
+				;
+			} finally {
 				stopLoading();
 			}
 		}
-		
+
 	}
-	
+
 	/**
 	 * A thread used to store the information in the database.
+	 * 
 	 * @author Sime
 	 *
 	 */
-	private class SaveToDatabseAsyncTask extends Thread{
+	private class SaveToDatabseAsyncTask extends Thread {
 		@Override
 		public void run() {
-			
+
 			try {
-				
+
 				startLoading();
 				LocalDate localDate = LocalDate.now();
-				if(dbConnection == null) {
+				if (dbConnection == null) {
 					dbConnection = new DBConnection();
 				}
-				dbConnection.insertNewReport(topFive, localDate.getYear(), localDate.getMonthValue(), localDate.getDayOfMonth());
+				dbConnection.insertNewReport(topFive, localDate.getYear(), localDate.getMonthValue(),
+						localDate.getDayOfMonth());
 				textArea.setText("Saved!");
-				
-			}catch(Exception ex) {
+
+			} catch (Exception ex) {
 				ExceptionHandler.handle(ex, appState.getActiveLanguage().sqlError());
-			}finally {
+			} finally {
 				stopLoading();
 			}
-			
+
 		}
 	}
-	
+
 	/**
-	 * The method called by background threads to start the loading animation in the UI thread.
+	 * The method called by background threads to start the loading animation in the
+	 * UI thread.
 	 */
 	private void startLoading() {
 		buttonSave.setEnabled(false);
@@ -255,41 +337,6 @@ public class ScrapingPanel extends JPanel implements ILanguageStateObserver {
 		buttonScrape.setEnabled(true);
 		buttonSave.setEnabled(true);
 	}
-	
-//	private class LoadingRunnable extends SwingWorker<Void, Void> {
-//
-//		ArrayList<String> data = new ArrayList<String>();
-//		ArrayList<NewsModel> result = new ArrayList<>();
-//
-//		@Override
-//		protected Void doInBackground() throws Exception {
-//
-//			startLoading();
-//
-//			ArrayList<String> urls = new ArrayList<>();
-//			urls.add(textFieldUrl1.getText());
-//			urls.add(textFieldUrl2.getText());
-//			urls.add(textFieldUrl3.getText());
-//
-//			data = scraper.scrapeWebsites(urls);
-//
-//			WordCounter wc = new WordCounter(data, appState.getActiveLanguage());
-//			result = wc.getMostFrequentWords();
-//
-//			return null;
-//		}
-//
-//		@Override
-//		protected void done() {
-//
-//			stopLoading();
-//
-//			topFive = result;
-//			showMostFrequentNews();
-//
-//		}
-//
-//	}
 
 	/**
 	 * Displays the most frequent news topic in the panel's text area.
@@ -299,8 +346,9 @@ public class ScrapingPanel extends JPanel implements ILanguageStateObserver {
 		textArea.setText("");
 
 		for (NewsModel n : topFive) {
-			textArea.setText(textArea.getText() + "\n" + "Topic " + n.getTopic() + " was mentioned " + n.getOccurrence()
-					+ " times.");
+			textArea.setText(textArea.getText() + "\n" + appState.getActiveLanguage().topic() + n.getTopic()
+					+ appState.getActiveLanguage().mentioned() + n.getOccurrence()
+					+ appState.getActiveLanguage().times());
 		}
 
 	}
@@ -317,27 +365,52 @@ public class ScrapingPanel extends JPanel implements ILanguageStateObserver {
 	private void refreshLanguage() {
 		ILanguage activeLanguage = appState.getActiveLanguage();
 
-		textFieldUrl1.setText(activeLanguage.getUrls().get(0));
-		textFieldUrl2.setText(activeLanguage.getUrls().get(1));
-		textFieldUrl3.setText(activeLanguage.getUrls().get(2));
+		for(WebSiteInput input : webSiteInputs) {
+			remove(input);
+		}
+		webSiteInputs.clear();
+		
+
+		for (String url : activeLanguage.getUrls()) {
+			WebSiteInput input = new WebSiteInput();
+
+			input.setText(url);
+			input.getRemoveButton().addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+
+					removeInputPanel(input);
+
+				}
+			});
+
+			webSiteInputs.add(input);
+			input.setBounds(10, (56 + (30 * webSiteInputs.size())), 300, 20);
+			add(input);
+
+		}
+		
+		validate();
+		repaint();
 
 		buttonSave.setText(activeLanguage.saveButton());
 		buttonScrape.setText(activeLanguage.scrapeButton());
 
 		scrapingPanelTitle.setText(activeLanguage.scrapeTitle());
 		scrapingPanelSubtitle.setText(activeLanguage.scrapeSubtitle());
-		
+
 		textArea.setText("");
 
 	}
 
 	/**
 	 * The method refreshes the "top five" news after a thread is done analyzing.
+	 * 
 	 * @param news
 	 */
 	private void refreshNews(ArrayList<NewsModel> news) {
 		topFive = news;
 		showMostFrequentNews();
 	}
-
 }

@@ -280,4 +280,24 @@ public class EnglishLanguage implements ILanguage {
 		return "Dates";
 	}
 
+	@Override
+	public String youHaveToProvideWebsite() {
+		return "You have to provide at least one website!";
+	}
+
+	@Override
+	public String topic() {
+		return "Topic ";
+	}
+
+	@Override
+	public String mentioned() {
+		return " was mentioned ";
+	}
+
+	@Override
+	public String times() {
+		return " times.";
+	}
+
 }
